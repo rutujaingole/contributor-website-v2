@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'Moja Global Community',
+  title: `Moja Global Community`,
   tagline: `Learn about moja global's projects and join our ever-growing community`,
   url: 'https://community.moja.global',
   baseUrl: '/',
@@ -9,9 +9,43 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'moja global', // Usually your GitHub org/user name.
   projectName: 'Community Website', // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+  },
   themeConfig: {
+    algolia: {
+      appId: 'BH4D9OD16A',
+      apiKey: '2227dd7224b78071d191aff9cbf1a6c5',
+      indexName: 'moja',
+    },
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+      darkTheme: require('prism-react-renderer/themes/dracula'),
+    },
+    announcementBar: {
+      id: 'announcementBar',
+      backgroundColor: '#74e8a3',
+      isCloseable: true,
+      content:
+        'If you would like to contribute, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/moja-global/community-website">GitHub</a> ⭐ and take a look at the open issues!',
+    },
+    colorMode: {
+      defaultMode: 'dark',
+      switchConfig: {
+        darkIcon: '🌙',
+        darkIconStyle: {
+          marginLeft: '2px',
+        },
+        lightIcon: '💡',
+        lightIconStyle: {
+          marginLeft: '1px',
+        },
+      },
+    },
     navbar: {
       title: 'Community',
+      hideOnScroll: true,
       logo: {
         alt: 'moja global Logo',
         src: 'img/logo.png',
@@ -19,25 +53,41 @@ module.exports = {
       },
       items: [
         {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
           type: 'doc',
           docId: 'intro',
           position: 'left',
           label: 'Projects',
         },
         { to: '/blog', label: 'Blogs', position: 'left' },
-        { to: '/community', label: 'Community', position: 'left' },
+        { to: '/initiatives', label: 'Initiatives', position: 'left' },
         {
           to: '/community/support',
-          label: 'Support',
+          label: 'Community',
           position: 'left',
           activeBaseRegex: '/community/',
+        },
+        {
+          to: '/case-studies/introduction',
+          label: 'Case Studies',
+          position: 'left',
+          activeBaseRegex: '/case-studies/',
         },
         {
           href: 'https://github.com/moja-global',
           label: 'GitHub',
           position: 'right',
         },
-        { to: '/roadmap', label: 'Roadmap', position: 'left' },
+        { to: '/roadmap', label: 'Roadmap', position: 'right' },
+        {
+          to: '/tutorial/tutorial-introduction',
+          label: 'Tutorial',
+          position: 'left',
+          activeBaseRegex: '/tutorial/',
+        },
       ],
     },
     footer: {
@@ -46,7 +96,7 @@ module.exports = {
         src: '/img/logo-light.png',
         href: 'https://moja.global',
       },
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',
@@ -81,24 +131,32 @@ module.exports = {
           title: 'Community',
           items: [
             {
+              label: 'Projects',
+              href: '/docs',
+            },
+            {
               label: 'Blogs',
-              href: 'https://community.moja.global/blog',
+              href: '/blog',
             },
             {
-              label: 'News',
-              href: 'https://moja.global/news/',
+              label: 'Mentorship',
+              href: '/community/mentorship',
             },
             {
-              label: 'Programs',
-              href: 'https://docs.moja.global/en/latest/contact.html#outreach-and-student-programs',
+              label: 'Initiatives',
+              href: '/initiatives',
+            },
+            {
+              label: 'Roadmap',
+              href: '/roadmap',
+            },
+            {
+              label: 'Case Studies',
+              href: '/case-studies/introduction',
             },
             {
               label: 'FAQs',
               href: 'https://docs.moja.global/en/latest/faq.html',
-            },
-            {
-              label: 'Slack',
-              href: 'https://join.slack.com/t/mojaglobal/shared_invite/zt-o6ta1ug0-rVLjAo460~d7JbZ~HpFFtw',
             },
           ],
         },
@@ -106,48 +164,55 @@ module.exports = {
           title: 'Getting Started',
           items: [
             {
-              label: 'What is FLINT?',
-              href: 'https://moja.global/flint/',
-            },
-            {
               label: 'About moja global',
-              href: 'https://github.com/moja-global',
+              href: '/docs/about-moja-global',
             },
             {
-              label: 'Newsletter',
-              href: ' https://global.us13.list-manage.com/subscribe?u=d8a187fa0dfae0bafe4bc69cc&id=cbfdc2d476',
+              label: 'Governance model',
+              href: '/community/governance',
+            },
+            {
+              label: 'Contributing guidelines',
+              href: '/community/contributing',
             },
           ],
         },
         {
-          title: 'Social',
-          items: [
-            {
-              label: 'Twitter ',
-              href: 'https://twitter.com/mojaglobal',
-            },
-             {
-              label: 'Youtube ',
-              href: 'https://www.youtube.com/channel/UCfQUrrNP1Xf-Fv4c8uHYXhQ',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/moja-global',
-            },
-            {
-              label: 'LinkedIn',
-              href: 'https://www.linkedin.com/company/moja-global/',
-            },
-          ],
-        },
-        {
-          title: 'Sponsors',
+          title: 'Follow Us',
           items: [
             {
               html: `
-                <a href="https://vercel.com/?utm_source=[moja-global]&utm_campaign=oss" target="_blank" rel="noreferrer noopener" aria-label="Powered by">
-                  <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" />
-                </a>
+              <a href= 'https://twitter.com/mojaglobal'>
+              <img class="socials" src="/img/twitter.png" alt="twitter icon" />
+              </a>
+              `,
+            },
+            {
+              html: `
+              <a href= 'https://www.youtube.com/channel/UCfQUrrNP1Xf-Fv4c8uHYXhQ'>
+              <img class="socials" src="/img/youtube.png" alt="youtube icon" />
+              </a>
+              `,
+            },
+            {
+              html: `
+              <a href= 'https://github.com/moja-global'>
+              <img class="socials" src="/img/github.png" alt="github icon" />
+              </a>
+              `,
+            },
+            {
+              html: `
+              <a href= 'https://www.linkedin.com/company/moja-global/'>
+              <img class="socials" src="/img/linkedin.png" alt="linkedin icon" />
+              </a>
+              `,
+            },
+            {
+              html: `
+              <a href= 'https://mojaglobal.slack.com/'>
+              <img class="socials" src="/img/slack.png" alt="slack icon" />
+              </a>
               `,
             },
           ],
@@ -165,7 +230,7 @@ module.exports = {
       { name: 'twitter:title', content: 'Moja Global Community' },
       {
         name: 'twitter:description',
-        content: "Learn about moja global's projects and join our ever-growing community",
+        content: "moja global is a not for profit, collaborative project that brings together a community of experts to develop open-source software that allows users to accurately and affordably estimate greenhouse gas emissions and removals from the AFOLU sector. The project’s members aim to support the widest possible use of credible emissions estimation software.",
       },
     ],
   },
@@ -179,13 +244,11 @@ module.exports = {
         },
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/moja-global/community-website/edit/main/website/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/moja-global/community-website/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -200,20 +263,31 @@ module.exports = {
   ],
   plugins: [
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
+      '@docusaurus/plugin-content-docs',
       {
-        hashed: true,
-        language: ["en"],
-      }
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
+        sidebarPath: require.resolve('./sidebarsCommunity.js'),
+      },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-          id: 'community',
-          path: 'community',
-          routeBasePath: 'community',
-          sidebarPath: require.resolve('./sidebarsCommunity.js')
+        id: 'case-studies',
+        path: 'case-studies',
+        routeBasePath: 'case-studies',
+        sidebarPath: require.resolve('./sidebarsCaseStudies.js'),
       },
     ],
-  ]
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tutorial-introduction',
+        path: 'tutorial',
+        routeBasePath: 'tutorial',
+        sidebarPath: require.resolve('./sidebarsTutorial.js'),
+      },
+    ],
+  ],
 };

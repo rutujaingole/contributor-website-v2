@@ -21,7 +21,19 @@
 
 .buttons {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: left;
+  justify-content: left;
+  margin: 30px 0 0;
+}
+
+html[data-theme='dark']  li > a:hover {
+    text-decoration: none;
+    color: #ecf0f1;
+}
+
+.buttons > a {
+  margin: 5px;
 }
 
 @media screen and (max-width: 966px) {
